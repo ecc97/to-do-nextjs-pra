@@ -31,20 +31,21 @@ function FormAddTask(): React.ReactElement {
         throw new Error('Error adding task')
       }
       setTask(initialTaskState)
+
     } catch (error) {
       console.error("Error:", error);
       setError('Error adding task')
     }
   }
   return (
-    <form onSubmit={handleSubmit} className='flex flex-col gap-2 items-center w-7/12 p-6'>
-        <label htmlFor="task">Task:</label>
+    <form onSubmit={handleSubmit} className='flex flex-col gap-2 items-center w-7/12 p-6 bg-cyan-500 rounded-lg shadow-lg shadow-blue-500/50'>
+        <label htmlFor="task">Nombre de la tarea:</label>
         <input type="text" value={task.name} onChange={handleChange} className='w-full p-2 rounded-lg text-black' id="task" name="name" required />
 
-        <label htmlFor="description">Description:</label>
+        <label htmlFor="description">Descripción:</label>
         <textarea value={task.description} onChange={handleChange} className='w-full p-4 rounded-lg text-black' id="description" name="description" required />
 
-        <button type="submit" className='bg-sky-900 hover:bg-sky-700 p-4 rounded-3xl text-white mt-4 transition'>Add Task</button>
+        <button type="submit" className={`bg-sky-900 hover:bg-sky-700 p-4 rounded-3xl text-white mt-4 transition ${task.name === "" || task.description === "" ? "cursor-wait" : "cursor-pointer"}`} disabled={task.name === "" || task.description === ""}>Añadir Tarea</button>
 
         {error && <p className='text-red-500'>{error}</p>}
     </form>

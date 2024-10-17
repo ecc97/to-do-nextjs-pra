@@ -1,7 +1,7 @@
 import TaskList from "@/components/TaskList"
 import { Task } from "@/interface/ITask"
 
-const getTasks = async (): Promise<Task[]> => {
+export const getTasks = async (): Promise<Task[]> => {
     try {
         const response = await fetch('http://localhost:3000/api/to-do', {
             method: 'GET',
@@ -20,11 +20,7 @@ const getTasks = async (): Promise<Task[]> => {
 
 const listTask = async () => {
     const tasks = await getTasks()
-    return(
-        <div>
-            <TaskList tasks={tasks} />
-        </div>
-    )
+    return <TaskList tasks={tasks} />
 }
 
 export default listTask

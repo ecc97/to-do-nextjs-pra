@@ -1,6 +1,7 @@
 "use client"
 import React from "react";
 import { Task } from "@/interface/ITask";
+import { useTaskList } from "./tasks-hook";
 
 interface TaskListProps {
     tasks: Task[];
@@ -9,13 +10,13 @@ interface TaskListProps {
 function TaskList ({ tasks }: {tasks: Task[]}): React.ReactElement<TaskListProps> {
     console.log("TaskList:", tasks)
     
-
+    const {tasks: taskHook} = useTaskList()
     return (
-        <div className="flex flex-col gap-4 justify-center items-center">
-            <h1 className="">Products</h1>
+        <div className="flex flex-col gap-4 justify-center items-center flex-grow p-12">
+            <h1 className="text-3xl font-bold">Tareas</h1>
 
             <div className="flex gap-2 flex-wrap">
-                {tasks.map((task) => {
+                {taskHook.map((task) => {
                     return (
                         <div key={task.id} className="flex flex-col border-2 border-gray-300 rounded-md p-4 items-center">
                             <h2>{task.name}</h2>
