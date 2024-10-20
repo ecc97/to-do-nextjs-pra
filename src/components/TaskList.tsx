@@ -2,6 +2,7 @@
 import React from "react";
 import { Task } from "@/interface/ITask";
 import { useTaskList } from "./tasks-hook";
+import { BtnUpdate } from "./ButtonUpdate";
 
 interface TaskListProps {
     tasks: Task[];
@@ -10,7 +11,7 @@ interface TaskListProps {
 function TaskList ({ tasks }: {tasks: Task[]}): React.ReactElement<TaskListProps> {
     console.log("TaskList:", tasks)
     
-    const {tasks: taskHook} = useTaskList()
+    const {tasks: taskHook, refreshTasks} = useTaskList()
     return (
         <div className="flex flex-col gap-4 justify-center items-center flex-grow p-12">
             <h1 className="text-3xl font-bold">Tareas</h1>
@@ -23,6 +24,9 @@ function TaskList ({ tasks }: {tasks: Task[]}): React.ReactElement<TaskListProps
                             <p>{task.description}</p>
                             <p>Fecha: {task.date}</p>
                             <p>Completado: {task.completed? "Si" : "No"}</p>
+                            <BtnUpdate taskId={task.id!} getTasks={refreshTasks} className={`w-full p-2 rounded-lg text-black ${task.completed ? "bg-sky-900 hover:bg-sky-700" : "bg-rose-800 hover:bg-rose-400" } `}>
+                                {task.completed ? "Hecho" : "No hecho" }
+                            </BtnUpdate>
                         </div>
                     );
                 })}

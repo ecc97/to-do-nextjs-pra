@@ -20,8 +20,14 @@ export const useTaskList = () => {
         const data = await getTasks()
         setTasks(data)
     }
+
+    const refreshTasks = async () => {
+        const data = await getTasks();
+        setTasks(data);
+    };
+
     return {
-        tasks, setTasks
+        tasks, setTasks, refreshTasks
     }
 
 }

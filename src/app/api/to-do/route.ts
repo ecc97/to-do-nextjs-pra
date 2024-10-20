@@ -57,3 +57,18 @@ export async function POST(req: Request) {
     taskList.push(newTask)
     return NextResponse.json(newTask, {status: 201})
 }
+
+export async function PATCH(req: Request) {
+    const body = await req.json()
+    const {id} = body
+    const index = taskList.findIndex((task) => task.id === id)
+    if(index !== -1){
+        taskList[index].completed = !taskList[index].completed
+        return NextResponse.json(taskList[index])
+    } else {
+        return NextResponse.json(
+            { message: "Task not found"},
+            { status: 404}
+        )
+    }
+}
