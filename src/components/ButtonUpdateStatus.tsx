@@ -2,20 +2,21 @@
 
 interface BtnUpdateProps {
     taskId: number;
+    completed: boolean;
     getTasks: () => Promise<void>;
     children: React.ReactNode;
     className?: string;
 }
 
-export const BtnUpdate = ({taskId, getTasks, children, className}: BtnUpdateProps) => {
+export const BtnUpdate = ({taskId, completed, getTasks, children, className}: BtnUpdateProps) => {
     
     const handleClick = async () => {
-        await fetch('http://localhost:3000/api/to-do', {
+        await fetch(`/api/to-do/${taskId}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ id: taskId, }),
+            body: JSON.stringify({ completed: completed = !completed }),
         })
         await getTasks()
     }
