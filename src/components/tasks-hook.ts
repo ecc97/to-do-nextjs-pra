@@ -1,6 +1,6 @@
 "use client"
 
-import { getTasks } from "@/app/listTasks/page";
+import { getTasks } from "@/app/tasks/page";
 import { Task } from "@/interface/ITask";
 import { useEffect, useState } from "react";
 
