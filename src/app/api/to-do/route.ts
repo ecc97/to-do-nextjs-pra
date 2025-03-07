@@ -1,29 +1,6 @@
 import { NextResponse } from "next/server";
+import { Task, taskList } from "./tasksStore";
 
-export interface Task {
-    id: number;
-    name: string;
-    date: string;
-    description: string;
-    completed: boolean;
-}
-
-let taskList: Task[] = [
-    {
-        id: 1,
-        name: "Task 1",
-        date: "2022-01-01",
-        description: "Task 1 description",
-        completed: false,
-    },
-    {
-        id: 2,
-        name: "Task 2",
-        date: "2022-01-02",
-        description: "Task 2 description",
-        completed: true,
-    }
-]
 
 export async function GET(req: Request) {
     const url = new URL(req.url)
@@ -58,17 +35,17 @@ export async function POST(req: Request) {
     return NextResponse.json(newTask, {status: 201})
 }
 
-export async function PATCH(req: Request) {
-    const body = await req.json()
-    const {id} = body
-    const index = taskList.findIndex((task) => task.id === id)
-    if(index !== -1){
-        taskList[index].completed = !taskList[index].completed
-        return NextResponse.json(taskList[index])
-    } else {
-        return NextResponse.json(
-            { message: "Task not found"},
-            { status: 404}
-        )
-    }
-}
+// export async function PATCH(req: Request) {
+//     const body = await req.json()
+//     const {id} = body
+//     const index = taskList.findIndex((task) => task.id === id)
+//     if(index !== -1){
+//         taskList[index].completed = !taskList[index].completed
+//         return NextResponse.json(taskList[index])
+//     } else {
+//         return NextResponse.json(
+//             { message: "Task not found"},
+//             { status: 404}
+//         )
+//     }
+// }
