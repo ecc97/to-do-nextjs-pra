@@ -7,7 +7,7 @@ function Navbar() {
     <nav className='flex justify-center w-full bg-cyan-400 py-5'>
     <ul className='flex gap-5'>
       <li>
-        <Link href="/listTasks" className='hover:underline'>Lista de Tareas</Link>
+        <Link href="/tasks" className='hover:underline'>Lista de Tareas</Link>
       </li>
       <li>
         <Link href="/addTask" className='hover:underline'>Crear Tarea</Link>

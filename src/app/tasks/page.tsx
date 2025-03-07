@@ -1,9 +1,11 @@
 import TaskList from "@/components/TaskList"
 import { Task } from "@/interface/ITask"
 
+const url = process.env.NEXT_PUBLIC_BASE_URL as string
+
 export const getTasks = async (): Promise<Task[]> => {
     try {
-        const response = await fetch('http://localhost:3000/api/to-do', {
+        const response = await fetch(`${url}/api/to-do`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
