@@ -1,7 +1,7 @@
 "use client"
 import React, {useEffect,useState} from 'react'
 import { Task } from '@/interface/ITask'
-import { getTaskById } from "@/app/task/[id]/page";
+import { getTaskById } from '@/app/services/actions'
 import { useRouter } from 'next/navigation'
 
 
@@ -17,17 +17,18 @@ const initialTaskState = {
 function FormTask({initialTask}: FormTaskProps): React.ReactElement {
   const [task, setTask] = useState<Task>(initialTask ?? initialTaskState)
   const [error, setError] = useState<string | null>(null)
+  const idTask = task.id as number
   const router = useRouter()
 
   useEffect(() => {
     const onMountedTask = async () => {
-      const taskData = await getTaskById(task.id!)
+      const taskData = await getTaskById(idTask)
       if (taskData) {
         setTask(taskData)
       }
     }
     onMountedTask()
-  }, [])
+  }, [idTask])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {name, value} = e.target

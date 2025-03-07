@@ -1,18 +1,5 @@
 import FormAddTask from '@/components/FormAddTask';
-
-const url = process.env.NEXT_PUBLIC_BASE_URL as string;
-
-export const getTaskById = async ( taskId: number ) => {
-  const res = await fetch(`${url}/api/to-do/${taskId}`, { 
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    cache: 'no-store',
-  });
-  const task = await res.json();
-  return task
-}
+import { getTaskById } from '@/app/services/actions';
 
 const EditTaskPage = async ({ params }: { params: { id: string } }) => {
   const { id } = params;

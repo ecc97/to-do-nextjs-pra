@@ -1,6 +1,6 @@
 "use client"
 
-import { getTasks } from "@/app/tasks/page";
+import { getTasks } from "@/app/services/actions";
 import { Task } from "@/interface/ITask";
 import { useEffect, useState } from "react";
 
@@ -10,7 +10,6 @@ export const useTaskList = () => {
     const [tasks, setTasks] = useState<Task[]>([]);
 
     
-
     useEffect(() => {
 
         onMounted()

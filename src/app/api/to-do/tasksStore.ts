@@ -6,7 +6,7 @@ export interface Task {
     completed: boolean;
 }
 
-export let taskList: Task[] = [
+export const taskList: Task[] = [
     {
         id: 1,
         name: "Task 1",
